@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+    id 'application'
+    id 'se.patrikerdes.use-latest-versions' version '0.2.18'
+    id 'com.github.ben-manes.versions' version '0.48.0'
+}
+
+group 'hexlet.code'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'hexlet.code.App'
+}
+
+compileJava {
+    options.release = 20
+}
+
+run {
+    standardInput = System.in
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
