@@ -1,7 +1,17 @@
 package hexlet.code;
 
-public class App {
+import picocli.CommandLine;
+
+import java.util.concurrent.Callable;
+
+public class App implements Callable<Integer> {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        int exitCode = new CommandLine(new Differ()).execute(args);
+        System.exit(exitCode);
+    }
+
+    @Override
+    public Integer call() throws Exception {
+        return null;
     }
 }
