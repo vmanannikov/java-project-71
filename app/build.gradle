@@ -1,9 +1,8 @@
 plugins {
-    id 'java'
     id 'checkstyle'
     id 'application'
     id 'se.patrikerdes.use-latest-versions' version '0.2.18'
-    id 'com.github.ben-manes.versions' version '0.48.0'
+    id 'com.github.ben-manes.versions' version '0.50.0'
 }
 
 group 'hexlet.code'
@@ -22,12 +21,13 @@ compileJava {
 }
 
 run {
-    standardInput = System.in
+    standardInput(System.in)
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
     implementation 'info.picocli:picocli:4.7.5'
 }
 
