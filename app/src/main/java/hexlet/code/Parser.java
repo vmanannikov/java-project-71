@@ -1,36 +1,46 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import static hexlet.code.Utils.readFile;
-import static hexlet.code.Utils.unserialize;
+import static hexlet.code.Operations.*;
 
+public class Parser {
 
-public class Differ {
-    public static String generate(String filePath1, String filePath2) throws IOException {
+    public static String parse(String filePath1, String filePath2) throws IOException {
 
-        var fileMap1 = unserialize(readFile(filePath1));
-        var fileMap2 = unserialize(readFile(filePath2));
+        ObjectMapper mapper = new YAMLMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         Map<String, DiffItem> diff = new TreeMap<>();
+
+        var dataOne = Utils.readFile(filePath1);
+        var dataTwo = Utils.readFile(filePath2);
+
+        Map<String, Object> mapOne = mapper.readValue(dataOne, Map.class);
+        Map<String, Object> mapTwo = mapper.readValue(dataTwo, Map.class);
+
         Set<String> keysFromMap = new TreeSet<>();
 
-        keysFromMap.addAll(fileMap1.keySet());
-        keysFromMap.addAll(fileMap2.keySet());
+        keysFromMap.addAll(mapOne.keySet());
+        keysFromMap.addAll(mapTwo.keySet());
 
         for (String item: keysFromMap) {
-            if (!fileMap2.containsKey(item)) {
-                diff.put(item, new DiffItem(Operations.DELETED, fileMap1.get(item), null));
-            } else if (!fileMap1.containsKey(item)) {
-                diff.put(item, new DiffItem(Operations.ADDED, null, fileMap2.get(item)));
-            } else if (!fileMap1.get(item).equals(fileMap2.get(item))) {
-                diff.put(item, new DiffItem(Operations.CHANGED, fileMap1.get(item), fileMap2.get(item)));
+            if (!mapTwo.containsKey(item)) {
+                diff.put(item, new DiffItem(DELETED, mapOne.get(item), null));
+            } else if (!mapOne.containsKey(item)) {
+                diff.put(item, new DiffItem(ADDED, null, mapTwo.get(item)));
+            } else if (!mapOne.get(item).equals(mapTwo.get(item))) {
+                diff.put(item, new DiffItem(CHANGED, mapOne.get(item), mapTwo.get(item)));
             } else {
-                diff.put(item, new DiffItem(Operations.STAYED, fileMap1.get(item), null));
+                diff.put(item, new DiffItem(Operations.STAYED, mapOne.get(item), null));
             }
         }
 

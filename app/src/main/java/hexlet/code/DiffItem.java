@@ -1,17 +1,17 @@
 package hexlet.code;
 
 public class DiffItem {
-    private String status;
+    private Operations status;
     private Object prevVal;
     private Object curVal;
 
-    public DiffItem(String status, Object prevVal, Object curVal) {
+    public DiffItem(Operations status, Object prevVal, Object curVal) {
         this.status = status;
         this.prevVal = prevVal;
         this.curVal = curVal;
     }
 
-    public String getStatus() {
+    public Operations getStatus() {
         return status;
     }
 
