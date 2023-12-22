@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.enums;
 
 public enum Operations {
     ADDED,

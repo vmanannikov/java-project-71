@@ -1,4 +1,6 @@
-package hexlet.code;
+package hexlet.code.storage;
+
+import hexlet.code.enums.Operations;
 
 public class DiffItem {
     private Operations status;

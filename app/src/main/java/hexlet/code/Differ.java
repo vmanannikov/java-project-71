@@ -1,5 +1,8 @@
 package hexlet.code;
 
+import hexlet.code.enums.Operations;
+import hexlet.code.storage.DiffItem;
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
