@@ -32,8 +32,12 @@ public class DiffItem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         DiffItem diffItem = (DiffItem) o;
         return Objects.equals(curVal, diffItem.curVal);
     }

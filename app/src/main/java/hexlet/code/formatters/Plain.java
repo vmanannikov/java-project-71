@@ -5,8 +5,9 @@ import hexlet.code.storage.DiffItem;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static hexlet.code.Utils.*;
-import static hexlet.code.enums.Operations.*;
+import static hexlet.code.Utils.getObjectValue;
+import static hexlet.code.enums.Operations.STAYED;
+
 
 public class Plain {
     public static String formatMap(Map<String, DiffItem> map) {

@@ -21,9 +21,13 @@ public class Utils {
     }
 
     public static String getObjectValue(Object o) {
-        if (o == null) return "null";
-        if (o instanceof String) return "'".concat((String) o).concat("'");
-        return o instanceof Integer || o instanceof Boolean ?
-                o.toString() : "[complex value]";
+        if (o == null) {
+            return "null";
+        }
+        if (o instanceof String) {
+            return "'".concat((String) o).concat("'");
+        }
+        return o instanceof Integer || o instanceof Boolean
+               ? o.toString() : "[complex value]";
     }
 }

@@ -10,9 +10,13 @@ import hexlet.code.parsers.YamlParser;
 import hexlet.code.storage.DiffItem;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Set;
 
-import static hexlet.code.Utils.*;
+import static hexlet.code.Utils.getExtension;
+import static hexlet.code.Utils.readFile;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws IOException {
