@@ -1,14 +1,10 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 
 public class Utils {
     public static String readFile(String filename) throws IOException {
@@ -19,9 +15,15 @@ public class Utils {
         return Files.readString(path);
     }
 
-    public static Map<String, Object> unserialize(String text) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> data = mapper.readValue(text, Map.class);
-        return data;
+    public static String getExtension(String filename) {
+        var index = filename.lastIndexOf('.');
+        return index > 0 ? filename.substring(index + 1) : "";
+    }
+
+    public static String getObjectValue(Object o) {
+        if (o == null) return "null";
+        if (o instanceof String) return "'".concat((String) o).concat("'");
+        return o instanceof Integer || o instanceof Boolean ?
+                o.toString() : "[complex value]";
     }
 }
