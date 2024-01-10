@@ -46,15 +46,15 @@ class DifferTest {
 
     @ParameterizedTest(name = "[{index}] {arguments}")
     @CsvSource(useHeadersInDisplayName = true, value = {
-            "ext, format, expected",
-            "json, stylish, expectedStylish",
-            "json, '', expectedStylish",
-            "json, pla  in, expectedPlain",
-            "json, json, expectedJson",
-            "yml, stylish, expectedStylish",
-            "yml, '', expectedStylish",
-            "yml, plain, expectedPlain",
-            "yml, json, expectedJson"
+        "ext, format, expected",
+        "json, stylish, expectedStylish",
+        "json, '', expectedStylish",
+        "json, plain, expectedPlain",
+        "json, json, expectedJson",
+        "yml, stylish, expectedStylish",
+        "yml, '', expectedStylish",
+        "yml, plain, expectedPlain",
+        "yml, json, expectedJson"
     })
     void generateTest(String extension, String format, String expectedField) throws Exception {
         var ext = extension.equals("yml") ? "yaml" : extension;
