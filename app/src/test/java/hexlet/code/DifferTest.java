@@ -13,9 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DifferTest {
 
-    static String expectedJson;
-    static String expectedStylish;
-    static String expectedPlain;
+    private static String expectedJson;
+    private static String expectedStylish;
+    private static String expectedPlain;
 
     private static Path getPath(String file) {
         return Paths.get("src", "test", "resources", "result", file)

@@ -4,7 +4,7 @@ import hexlet.code.enums.Operations;
 
 import java.util.Objects;
 
-public class DiffItem {
+public final class DiffItem {
     private Operations status;
     private Object prevVal;
     private Object curVal;

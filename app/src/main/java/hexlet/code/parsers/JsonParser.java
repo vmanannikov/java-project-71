@@ -8,7 +8,7 @@ import hexlet.code.storage.DiffItem;
 
 import java.util.Map;
 
-public class JsonParser implements Parser {
+public final class JsonParser implements Parser {
     @Override
     public Map<String, DiffItem> parse(String content) throws JsonProcessingException {
         ObjectMapper mapper = new JsonMapper();

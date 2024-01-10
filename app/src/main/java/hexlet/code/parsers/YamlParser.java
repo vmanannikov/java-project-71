@@ -8,7 +8,7 @@ import hexlet.code.storage.DiffItem;
 
 import java.util.Map;
 
-public class YamlParser implements Parser {
+public final class YamlParser implements Parser {
     @Override
     public Map<String, DiffItem> parse(String content) throws JsonProcessingException {
         ObjectMapper mapper = new YAMLMapper();
