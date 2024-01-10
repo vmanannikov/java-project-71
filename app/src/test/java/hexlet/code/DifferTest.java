@@ -49,7 +49,7 @@ class DifferTest {
             "ext, format, expected",
             "json, stylish, expectedStylish",
             "json, '', expectedStylish",
-            "json, plain, expectedPlain",
+            "json, pla  in, expectedPlain",
             "json, json, expectedJson",
             "yml, stylish, expectedStylish",
             "yml, '', expectedStylish",
@@ -67,9 +67,4 @@ class DifferTest {
             throw new RuntimeException(e);
         }
     }
-//    @Test
-//    void generateJsonTest() throws Exception {
-//        var actual = Differ.generate("file1.json", "file2.json", "stylish");
-//        assertThat(actual).isEqualTo(expectedJson);
-//    }
 }

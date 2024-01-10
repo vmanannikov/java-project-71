@@ -15,6 +15,9 @@ import java.util.*;
 import static hexlet.code.Utils.*;
 
 public class Differ {
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
     public static String generate(String filePath1, String filePath2, String format) throws IOException {
 
         var fileExt1 = getExtension(filePath1);
