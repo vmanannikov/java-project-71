@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import hexlet.code.base.Parser;
-import hexlet.code.storage.DiffItem;
+import hexlet.code.model.DiffItem;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package hexlet.code.formatters;
 
-import hexlet.code.storage.DiffItem;
+import hexlet.code.model.DiffItem;
 
 import java.util.Map;
 import java.util.TreeMap;

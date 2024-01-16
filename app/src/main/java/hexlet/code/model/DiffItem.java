@@ -1,4 +1,4 @@
-package hexlet.code.storage;
+package hexlet.code.model;
 
 import hexlet.code.enums.Operations;
 
@@ -44,6 +44,6 @@ public final class DiffItem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(curVal);
+        return Objects.hash(curVal, prevVal, status);
     }
 }

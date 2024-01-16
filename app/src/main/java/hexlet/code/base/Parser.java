@@ -1,6 +1,6 @@
 package hexlet.code.base;
 
-import hexlet.code.storage.DiffItem;
+import hexlet.code.model.DiffItem;
 
 import java.io.IOException;
 import java.util.Map;
