@@ -4,45 +4,38 @@ import hexlet.code.model.DiffItem;
 
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import static hexlet.code.Utils.getObjectValue;
 import static hexlet.code.enums.Operations.STAYED;
 
-
 public class Plain {
     public static String formatMap(Map<String, DiffItem> map) {
         Map<String, DiffItem> plainMap = new TreeMap<>(map);
+        return map.entrySet().stream()
+            .filter((e) -> !STAYED.equals(e.getValue().getStatus()))
+            .map(e -> {
+                DiffItem v = e.getValue();
+                String k = e.getKey();
+                switch (v.getStatus()) {
+                    case CHANGED -> {
+                        return "Property '" + e.getKey() + "' was updated. From "
+                                + getObjectValue(v.getPrevVal())
+                                + " to " + getObjectValue(v.getCurVal())
+                                + "\n";
+                    }
+                    case DELETED -> {
+                        return "Property '" + k + "' was removed" + "\n";
+                    }
 
-        // Чистим неизменяемые ключи
-        map.forEach((k, v) -> {
-            if (plainMap.get(k).getStatus().equals(STAYED)) {
-                plainMap.remove(k);
-            }
-        });
-
-        StringBuilder sb = new StringBuilder();
-
-        plainMap.forEach((k, v) -> {
-            switch (map.get(k).getStatus()) {
-                case CHANGED -> {
-                    sb.append("Property '").append(k).append("' was updated. From ")
-                            .append(getObjectValue(v.getPrevVal()))
-                            .append(" to ").append(getObjectValue(v.getCurVal()))
-                            .append("\n");
+                    case ADDED -> {
+                        return "Property '" + k + "' was added with value: "
+                                + getObjectValue(v.getCurVal()) + "\n";
+                    }
+                    default -> throw new RuntimeException("Illegal difference key: " + k);
                 }
 
-                case DELETED -> {
-                    sb.append("Property '").append(k).append("' was removed").append("\n");
-                }
+            }).collect(Collectors.joining()).trim();
 
-                case ADDED -> {
-                    sb.append("Property '").append(k).append("' was added with value: ")
-                            .append(getObjectValue(v.getCurVal())).append("\n");
-                }
-                default -> throw new RuntimeException("Illegal difference key: " + k);
-            }
-        });
-
-        return sb.toString().trim();
     }
 }

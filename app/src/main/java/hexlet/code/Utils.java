@@ -11,10 +11,12 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Utils {
-    public static Map<String, DiffItem> readFile(String filename) throws IOException {
+    public static List<String> readFile(String filename) throws IOException {
         Path path = Paths.get(filename).toAbsolutePath().normalize();
 
         if (!Files.exists(path)) {
@@ -24,14 +26,15 @@ public class Utils {
         var content = Files.readString(path);
         var ext = getExtension(filename);
 
+        return new ArrayList<>(List.of(content, ext));
+    }
+
+    public static Map<String, DiffItem> getData(String content, String ext) throws IOException {
         Parser parser = switch (Extensions.valueOf(ext.toUpperCase())) {
             case YML, YAML -> new YamlParser();
             case JSON -> new JsonParser();
         };
-
-        var fileMap = parser.parse(content);
-
-        return fileMap;
+        return parser.parse(content);
     }
 
     public static String getExtension(String filename) {
